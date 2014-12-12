@@ -18,10 +18,10 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 
 ## API
 
-	cdi.run(<cccf>) // Run instructions
-	cdi.rm(<cccf>)  // Remove instructions
-	cdi.start(<cccf>) // Run instructions
-	cdi.stop(<cccf>)  // Remove instructions
+	cdi.run(<cccf>)   // Run instructions
+	cdi.rm(<cccf>)    // Remove instructions - MISSING
+	cdi.start(<cccf>) // Run instructions    - MISSING
+	cdi.stop(<cccf>)  // Remove instructions - MISSING
 
 	// Run and rm could take optional start/stop if exists kind of thing...?
 
