@@ -36,4 +36,11 @@ describe('cccf-docker-instructions', function() {
 		assert(instructions[0].indexOf('docker start app') == 0)
 	})
 
+	it('can return rm instructions', function() {
+		var instructions = cdi.rm(config)
+		// console.log(instructions)
+		assert(instructions instanceof Array)
+		assert(instructions[0].indexOf('docker rm app') == 0)
+	})
+
 })

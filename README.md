@@ -19,7 +19,7 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 ## API
 
 	cdi.run(<cccf>)   // Run instructions
-	cdi.rm(<cccf>)    // Remove instructions - MISSING
+	cdi.rm(<cccf>)    // Remove instructions
 	cdi.start(<cccf>) // Run instructions
 	cdi.stop(<cccf>)  // Remove instructions
 

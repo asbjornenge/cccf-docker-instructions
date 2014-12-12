@@ -44,6 +44,12 @@ module.exports = {
 		if (!(config instanceof Array)) config = [config]
 		if (cccf.validate(config)) return cccf.validate(config)
 		return config.map(function(container) { return 'docker start '+container.id  })
+	},
+
+	rm : function(config) {
+		if (!(config instanceof Array)) config = [config]
+		if (cccf.validate(config)) return cccf.validate(config)
+		return config.map(function(container) { return 'docker rm '+container.id  })
 	}
 
 }
