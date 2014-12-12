@@ -32,6 +32,18 @@ module.exports = {
 		return config.map(function(container) {
 			return buildRunCommand(container)
 		})
+	},
+
+	stop : function(config) {
+		if (!(config instanceof Array)) config = [config]
+		if (cccf.validate(config)) return cccf.validate(config)
+		return config.map(function(container) { return 'docker stop '+container.id  })
+	},
+
+	start : function(config) {
+		if (!(config instanceof Array)) config = [config]
+		if (cccf.validate(config)) return cccf.validate(config)
+		return config.map(function(container) { return 'docker start '+container.id  })
 	}
 
 }
