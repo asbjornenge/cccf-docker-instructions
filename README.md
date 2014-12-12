@@ -32,6 +32,10 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 
 ## Changelog
 
+### 1.0.3
+
+* Fixed bug returning undefined for missing cmd
+
 ### 1.0.2
 
 * Smore silly doc fixes
