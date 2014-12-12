@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/asbjornenge/cccf-docker-instructions",
   "dependencies": {
-    "cccf": "^1.0.1"
+    "cccf": "^2.0.0"
   }
 }
