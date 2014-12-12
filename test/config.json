@@ -1,0 +1,17 @@
+[{
+    "id"      : "app1",
+    "image"   : "megacorp/webapp",
+    "cmd"     : "python server.py",
+    "ports"   : ["80:80"],
+    "env"     : ["FOO=BAR"],
+    "volumes" : ["/tmp:/tmp"],
+    "expose"  : ["8000","3000"]
+},{
+    "id"      : "app2",
+    "image"   : "megacorp/webapp",
+    "cmd"     : "python server.py",
+    "ports"   : ["443:443"],
+    "env"     : ["FOO=BAR"],
+    "volumes" : ["/tmp:/tmp"],
+    "expose"  : ["8000","3000"]
+}]
