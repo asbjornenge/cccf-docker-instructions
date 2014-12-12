@@ -18,10 +18,10 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 
 ## API
 
-	cdi.run(<cccf>)   // Run instructions
-	cdi.rm(<cccf>)    // Remove instructions
-	cdi.start(<cccf>) // Run instructions
-	cdi.stop(<cccf>)  // Remove instructions
+	cdi.run(<cccf>)   // run instructions
+	cdi.rm(<cccf>)    // remove instructions
+	cdi.start(<cccf>) // start instructions
+	cdi.stop(<cccf>)  // stop instructions
 
 	// Run and rm could take optional start/stop if exists kind of thing...?
 
@@ -31,6 +31,10 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 	cccf-docker-instructions run config.json | sh
 
 ## Changelog
+
+### 1.0.2
+
+* Smore silly doc fixes
 
 ### 1.0.1
 
