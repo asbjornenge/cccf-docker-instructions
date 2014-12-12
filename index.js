@@ -21,7 +21,7 @@ var transformKey = function(key, value) {
 var buildRunCommand = function(container) {
 	return Object.keys(container).reduce(function(cmd, key) {
 		return cmd.slice(0,cmd.indexOf('__options__')) + transformKey(key, container[key]) + cmd.slice(cmd.indexOf('__options__'),cmd.length)
-	},'docker run__options__'+container.image+' '+container.cmd || '').replace('__options__',' ')
+	},'docker run__options__'+container.image+' '+(container.cmd || '')).replace('__options__',' ')
 }
 
 module.exports = {
