@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "cccf and cccf-docker -> docker cli instructions",
   "main": "index.js",
+  "bin": "cli.js",
   "directories": {
     "test": "test"
   },
