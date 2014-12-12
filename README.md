@@ -32,6 +32,10 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 
 ## Changelog
 
+### 1.1.0
+
+* Adding detach flag by default but support overwriting
+
 ### 1.0.3
 
 * Fixed bug returning undefined for missing cmd

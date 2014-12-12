@@ -51,4 +51,15 @@ describe('cccf-docker-instructions', function() {
 		assert(instructions[0].indexOf('undefined') < 0)		
 	})
 
+	it('will by default add a detach flag', function() {
+		var instructions = cdi.run(config)
+		// console.log(instructions[0])
+		assert(instructions instanceof Array)
+		assert(instructions[0].indexOf('-d') > 0)
+		var instructions = cdi.run(config, false)
+		// console.log(instructions[0])
+		assert(instructions instanceof Array)
+		assert(instructions[0].indexOf('-d') < 0)
+	})
+
 })
