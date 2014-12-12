@@ -1,0 +1,29 @@
+{
+  "name": "cccf-docker-instructions",
+  "version": "1.0.0",
+  "description": "cccf and cccf-docker -> docker cli instructions",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -w -R nyan --check-leaks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asbjornenge/cccf-docker-instructions.git"
+  },
+  "keywords": [
+    "cccf",
+    "docker"
+  ],
+  "author": "Asbjorn Enge <asbjorn@hanafjedle.net>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/asbjornenge/cccf-docker-instructions/issues"
+  },
+  "homepage": "https://github.com/asbjornenge/cccf-docker-instructions",
+  "dependencies": {
+    "cccf": "^1.0.1"
+  }
+}
