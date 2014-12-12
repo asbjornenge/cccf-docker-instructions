@@ -25,4 +25,19 @@ This module takes a [cccf](https://github.com/asbjornenge/common-container-confi
 
 	// Run and rm could take optional start/stop if exists kind of thing...?
 
+## CLI
+
+	npm install -g cccf-docker-instructions
+	cccf-docker-instructions run config.json | sh
+
+## Changelog
+
+### 1.0.1
+
+* Added some cli docs
+
+### 1.0.0
+
+* Initial release :tada:
+
 enjoy.
