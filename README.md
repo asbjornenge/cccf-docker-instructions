@@ -25,6 +25,11 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 	cdi.start(<cccf>) // start instructions
 	cdi.stop(<cccf>)  // stop instructions
 
+## CLI
+
+	npm install -g cccf-docker-instructions
+	cdi run config.json | sh
+
 ## Changelog
 
 ### 2.1.0
