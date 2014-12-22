@@ -29,7 +29,7 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 
 ### 2.1.0
 
-* Brought back the cli :stuck_out_tounge: :see_no_evil:
+* Brought back the cli :stuck_out_tongue: :see_no_evil:
 
 ### 2.0.0
 
