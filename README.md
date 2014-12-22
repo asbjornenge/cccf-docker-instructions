@@ -1,5 +1,7 @@
 # CCCF Docker Instructions
 
+[![NPM](https://nodei.co/npm/cccf-docker-instructions.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cccf-docker-instructions/)
+
 This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker (coming sooner or later) structure and turns it into docker instructions.
 
 ## Install
