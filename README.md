@@ -23,14 +23,12 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 	cdi.start(<cccf>) // start instructions
 	cdi.stop(<cccf>)  // stop instructions
 
-	// Run and rm could take optional start/stop if exists kind of thing...?
-
-## CLI
-
-	npm install -g cccf-docker-instructions
-	cccf-docker-instructions run config.json | sh
-
 ## Changelog
+
+### 2.0.0
+
+* Using cccf v3.0.0
+* Removed cli (moving to separate module)
 
 ### 1.1.0
 
