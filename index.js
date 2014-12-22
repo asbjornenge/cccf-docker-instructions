@@ -27,8 +27,7 @@ var buildRunCommand = function(container, detach) {
 module.exports = {
 
 	run : function(config, detach) {
-		if (!(config instanceof Array)) config = [config]
-		if (cccf.validate(config)) return cccf.validate(config)
+		config = cccf.validate((config instanceof Array) ? config : [config])
 		detach = (typeof detach == 'undefined') ? true : detach
 		return config.map(function(container) {
 			return buildRunCommand(container, detach)
@@ -36,20 +35,17 @@ module.exports = {
 	},
 
 	stop : function(config) {
-		if (!(config instanceof Array)) config = [config]
-		if (cccf.validate(config)) return cccf.validate(config)
+		config = cccf.validate((config instanceof Array) ? config : [config])
 		return config.map(function(container) { return 'docker stop '+container.id  })
 	},
 
 	start : function(config) {
-		if (!(config instanceof Array)) config = [config]
-		if (cccf.validate(config)) return cccf.validate(config)
+		config = cccf.validate((config instanceof Array) ? config : [config])
 		return config.map(function(container) { return 'docker start '+container.id  })
 	},
 
 	rm : function(config) {
-		if (!(config instanceof Array)) config = [config]
-		if (cccf.validate(config)) return cccf.validate(config)
+		config = cccf.validate((config instanceof Array) ? config : [config])
 		return config.map(function(container) { return 'docker rm '+container.id  })
 	}
 
