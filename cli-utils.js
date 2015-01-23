@@ -35,7 +35,6 @@ clu.prototype = {
         this.config = this.argv.var.reduce(function(conf, currVar, index, arr) {
             var split = currVar.split('=')
             var str   = JSON.stringify(conf).replace(new RegExp('\\$\{'+split[0]+'\}','g'), split[1])
-            console.log(str)
             return JSON.parse(str)
         },this.config)
     },
