@@ -32,7 +32,7 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 
 ### Options
 
-    --env FOO=BAR    // Adds and evironment variable to ALL containers in config.json
+    --env FOO=BAR    // Adds an environment variable to ALL containers in config.json
     --var MEH=BAH    // Replaces all occurances of ${MEH} with BAH
 
 ## Changelog
@@ -40,7 +40,7 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 ### 2.3.0
 
 * Added ability to pass --env args to cli
-* Added support for replacing varilable in the config file !! :rocket:
+* Added ability to pass --var args to cli for replacing variables in the config file !! :rocket:
 
 ### 2.2.0
 
