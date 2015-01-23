@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-var path = require('path')
+var argv = require('minimist')(process.argv.slice(2))
 var cdi  = require('./index')
-var argv = process.argv.slice(2)
+var clu  = require('./cli-utils')
 var pkg  = require('./package.json')
 var help = "USAGE\n    cdi [CMD] config-file.json\n\
 CMD\n\
@@ -10,14 +10,13 @@ CMD\n\
     stop    - output stop commands\n\
     rm      - output rm commands\n\
 "
-if (argv.length < 2) { console.log(help); process.exit(1) }
-if (Object.keys(cdi).indexOf(argv[0]) < 0) { console.log('ERROR: Invalid CMD '+argv[0]+'\n\n'+help); process.exit(1) }
-var pathToStatic = function (static_param) {
-    if (static_param[0] != '/') static_param = process.cwd()+'/'+static_param
-    return path.resolve(static_param)
-}
-var cmd = argv[0]
-var cfg = require(pathToStatic(argv[1]))
+
+if (argv['_'].length < 2) { console.log(help); process.exit(1) }
+if (Object.keys(cdi).indexOf(argv['_'][0]) < 0) { console.log('ERROR: Invalid CMD '+argv['_'][0]+'\n\n'+help); process.exit(1) }
+
+var cmd = argv['_'][0]
+var cfg = clu(argv).loadConfig().addEnvArgsMaybe().replaceVarsMaybe().config
+
 try { 
     cdi[cmd](cfg).forEach(function(instruction) { console.log(instruction) })    
 } catch(e) { 
