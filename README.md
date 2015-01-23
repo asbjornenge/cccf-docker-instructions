@@ -37,6 +37,10 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 
 ## Changelog
 
+### 2.3.1
+
+* Bugfix where --env would break container with no env
+
 ### 2.3.0
 
 * Added ability to pass --env args to cli

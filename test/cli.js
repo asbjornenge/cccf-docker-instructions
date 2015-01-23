@@ -10,10 +10,11 @@ describe('cdi cli', function() {
         config.forEach(function(container) {
             assert(container.env.indexOf(newEnv) < 0)
         })
+        delete config[0].env
         var cl = clu({ env : [newEnv] })
         cl.config = config
         cl.addEnvArgsMaybe().config.forEach(function(container) {
-            assert(container.env.indexOf(newEnv) > 0)
+            assert(container.env.indexOf(newEnv) >= 0)
         })
     })
 

@@ -26,7 +26,7 @@ clu.prototype = {
 
     addEnvArgs : function() {
         this.config = this.config.map(function(container) {
-            container.env = container.env.concat(this.argv.env)
+            container.env = (container.env || []).concat(this.argv.env)
             return container
         }.bind(this))
     },
