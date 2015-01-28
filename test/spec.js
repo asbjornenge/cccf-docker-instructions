@@ -43,6 +43,13 @@ describe('cccf-docker-instructions', function() {
 		assert(instructions[0].indexOf('docker rm app') == 0)
 	})
 
+	it('can return kill instructions', function() {
+		var instructions = cdi.kill(config)
+		// console.log(instructions)
+		assert(instructions instanceof Array)
+		assert(instructions[0].indexOf('docker kill app') == 0)
+	})
+
 	it('should not return undefined for missing cmd', function() {
 		var c = clone(config)[0]; delete c.cmd
 		var instructions = cdi.run(c)

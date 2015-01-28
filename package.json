@@ -1,6 +1,6 @@
 {
   "name": "cccf-docker-instructions",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "cccf and cccf-docker -> docker cli instructions",
   "main": "index.js",
   "bin": {

@@ -8,6 +8,7 @@ CMD\n\
     run     - output run commands\n\
     start   - output start commands\n\
     stop    - output stop commands\n\
+    kill    - output kill commands\n\
     rm      - output rm commands\n\
 "
 

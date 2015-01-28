@@ -34,6 +34,11 @@ module.exports = {
 		})
 	},
 
+	kill : function(config) {
+		config = cccf.validate((config instanceof Array) ? config : [config])
+		return config.map(function(container) { return 'docker kill '+container.id  })
+	},
+
 	stop : function(config) {
 		config = cccf.validate((config instanceof Array) ? config : [config])
 		return config.map(function(container) { return 'docker stop '+container.id  })

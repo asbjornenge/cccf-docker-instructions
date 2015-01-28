@@ -21,9 +21,10 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 ## API
 
 	cdi.run(<cccf>)   // run instructions
-	cdi.rm(<cccf>)    // remove instructions
 	cdi.start(<cccf>) // start instructions
 	cdi.stop(<cccf>)  // stop instructions
+	cdi.kill(<cccf>)  // kill instructions
+	cdi.rm(<cccf>)    // remove instructions
 
 ## CLI
 
@@ -36,6 +37,10 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
     --var MEH=BAH    // Replaces all occurances of ${MEH} with BAH
 
 ## Changelog
+
+### 2.4.0
+
+* Added support for kill command 
 
 ### 2.3.1
 
