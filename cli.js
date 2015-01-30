@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var argv = require('minimist')(process.argv.slice(2))
+var chpr = require('child_process')
 var cdi  = require('./index')
 var clu  = require('./cli-utils')
 var pkg  = require('./package.json')
@@ -19,7 +20,12 @@ var cmd = argv['_'][0]
 var cfg = clu(argv).loadConfig().addArgsMaybe().replaceVarsMaybe().config
 
 try { 
-    cdi[cmd](cfg).forEach(function(instruction) { console.log(instruction) })    
+    cdi[cmd](cfg).forEach(function(instruction) { 
+        if (argv.print) { console.log(instruction); return }
+        var child = chpr.exec(instruction)
+        child.stdout.on('data', function(data) { console.log(data) }) 
+        child.stderr.on('data', function(data) { console.log(data) }) 
+    })    
 } catch(e) { 
     console.log('ERROR: Broken configuration\n', require('prettyjson').render(e.trace))
 }
