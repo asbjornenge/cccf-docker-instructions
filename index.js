@@ -1,57 +1,56 @@
 var cccf = require('cccf')
+var clone = require('clone')
+var tsiminim = require('tsiminim')
 
-var transformKey = function(key, value) {
-	switch(key) {
-		case 'id':
-			return ' --name '+value
-		case 'ports':
-			if (value instanceof Array) return value.reduce(function(current, sub) { return current + transformKey(key, sub) },'')
-			return ' -p '+value
-		case 'env':
-			if (value instanceof Array) return value.reduce(function(current, sub) { return current + transformKey(key, sub) },'')
-			return ' --env '+value
-		case 'volumes':
-			if (value instanceof Array) return value.reduce(function(current, sub) { return current + transformKey(key, sub) },'')
-			return ' -v '+value
-		default:
-			return ''
-	}
+var containerToDockerCommandWithArgs = function(cmd, options, container) {
+    var image = container.image
+    var ccmd  = container.cmd || ''
+    container.name   = container.id
+    container.volume = container.volumes
+    container.p      = container.ports
+    delete container.image
+    delete container.cmd
+    delete container.id
+    delete container.volumes
+    delete container.ports
+    if (!(options.detach === false)) container.d = true
+    container['_'] = [cmd]
+    return 'docker '+tsiminim(container)+' '+image+' '+ccmd
 }
 
-var buildRunCommand = function(container, detach) {
-	return Object.keys(container).reduce(function(cmd, key) {
-		return cmd.slice(0,cmd.indexOf('__options__')) + transformKey(key, container[key]) + cmd.slice(cmd.indexOf('__options__'),cmd.length)
-	},'docker run__options__'+(detach ? '-d ' : '')+container.image+' '+(container.cmd || '')).replace('__options__',' ')
+var containerToDockerCommandWithIds = function(cmd, container) {
+    return 'docker '+cmd+' '+container.id
+}
+
+var validConfig = function(config) {
+    return cccf.validate((config instanceof Array) ? config : [config])
 }
 
 module.exports = {
 
-	run : function(config, detach) {
-		config = cccf.validate((config instanceof Array) ? config : [config])
-		detach = (typeof detach == 'undefined') ? true : detach
-		return config.map(function(container) {
-			return buildRunCommand(container, detach)
-		})
+	run : function(config, options) {
+        var ctd = containerToDockerCommandWithArgs.bind(undefined, 'run', options || {})
+        return clone(validConfig(config)).map(ctd)
 	},
 
 	kill : function(config) {
-		config = cccf.validate((config instanceof Array) ? config : [config])
-		return config.map(function(container) { return 'docker kill '+container.id  })
+        var ctd = containerToDockerCommandWithIds.bind(undefined, 'kill')
+		return clone(validConfig(config)).map(ctd)
 	},
 
 	stop : function(config) {
-		config = cccf.validate((config instanceof Array) ? config : [config])
-		return config.map(function(container) { return 'docker stop '+container.id  })
+        var ctd = containerToDockerCommandWithIds.bind(undefined, 'stop')
+		return clone(validConfig(config)).map(ctd)
 	},
 
 	start : function(config) {
-		config = cccf.validate((config instanceof Array) ? config : [config])
-		return config.map(function(container) { return 'docker start '+container.id  })
+        var ctd = containerToDockerCommandWithIds.bind(undefined, 'start')
+		return clone(validConfig(config)).map(ctd)
 	},
 
 	rm : function(config) {
-		config = cccf.validate((config instanceof Array) ? config : [config])
-		return config.map(function(container) { return 'docker rm '+container.id  })
+        var ctd = containerToDockerCommandWithIds.bind(undefined, 'rm')
+		return clone(validConfig(config)).map(ctd)
 	}
 
 }
