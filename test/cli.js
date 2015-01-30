@@ -5,16 +5,22 @@ var config = clone(require('./config.json'))
 
 describe('cdi cli', function() {
 
-    it('can add environment variables', function() {
-        var newEnv = 'EPLE=KAKE'
+    it('can will add any unreconized arguments to all containers', function() {
+        var envArg1 = 'EPLE=KAKE'
+        var envArg2 = 'NISSE=PETTER' 
+        var dnsArg  = '172.17.42.1'
         config.forEach(function(container) {
-            assert(container.env.indexOf(newEnv) < 0)
+            assert(container.env.indexOf(envArg1) < 0)
+            assert(container.env.indexOf(envArg2) < 0)
+            assert(container.dns == undefined)
         })
         delete config[0].env
-        var cl = clu({ env : [newEnv] })
+        var cl = clu({ env : [envArg1,envArg2], dns : dnsArg })
         cl.config = config
-        cl.addEnvArgsMaybe().config.forEach(function(container) {
-            assert(container.env.indexOf(newEnv) >= 0)
+        cl.addArgsMaybe().config.forEach(function(container) {
+            assert(container.env.indexOf(envArg1) >= 0)
+            assert(container.env.indexOf(envArg2) >= 0)
+            assert(container.dns.indexOf(dnsArg) >= 0)
         })
     })
 
