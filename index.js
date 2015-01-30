@@ -6,8 +6,8 @@ var containerToDockerCommandWithArgs = function(cmd, options, container) {
     var image = container.image
     var ccmd  = container.cmd || ''
     container.name   = container.id
-    container.volume = container.volumes
-    container.p      = container.ports
+    if (container.volumes) container.volume = container.volumes
+    if (container.ports)   container.p      = container.ports
     delete container.image
     delete container.cmd
     delete container.id
