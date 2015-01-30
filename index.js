@@ -1,6 +1,6 @@
 var cccf = require('cccf')
 var clone = require('clone')
-var tsiminim = require('tsiminim')
+var tsiminim = require('./tsiminim')
 
 var containerToDockerCommandWithArgs = function(cmd, options, container) {
     var image = container.image
