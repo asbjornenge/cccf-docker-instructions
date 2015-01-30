@@ -16,7 +16,7 @@ if (argv['_'].length < 2) { console.log(help); process.exit(1) }
 if (Object.keys(cdi).indexOf(argv['_'][0]) < 0) { console.log('ERROR: Invalid CMD '+argv['_'][0]+'\n\n'+help); process.exit(1) }
 
 var cmd = argv['_'][0]
-var cfg = clu(argv).loadConfig().addEnvArgsMaybe().replaceVarsMaybe().config
+var cfg = clu(argv).loadConfig().addArgsMaybe().replaceVarsMaybe().config
 
 try { 
     cdi[cmd](cfg).forEach(function(instruction) { console.log(instruction) })    
