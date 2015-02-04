@@ -28,8 +28,9 @@
   "homepage": "https://github.com/asbjornenge/cccf-docker-instructions",
   "dependencies": {
     "cccf": "^3.0.0",
+    "clone": "^0.2.0",
     "minimist": "^1.1.0",
-    "treeify": "^1.0.1"
+    "prettyjson": "^1.0.0"
   },
   "devDependencies": {
     "clone": "^0.2.0"

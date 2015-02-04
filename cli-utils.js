@@ -6,7 +6,8 @@ var pathToStatic = function (static_param) {
 }
 
 var clu = function(argv) {
-    this.argv = argv
+    this.myargs = ['var']
+    this.argv   = argv
 }
 clu.prototype = {
 
@@ -15,7 +16,7 @@ clu.prototype = {
         return this
     },
 
-    hasArg : function(arg) {
+    prepArg : function(arg) {
         var argv = this.argv
         if (!argv) return false 
         if (!argv[arg]) return false
@@ -24,9 +25,11 @@ clu.prototype = {
         return true
     },
 
-    addEnvArgs : function() {
+    addEnvArgs : function(args) {
         this.config = this.config.map(function(container) {
-            container.env = (container.env || []).concat(this.argv.env)
+            args.forEach(function(arg) {
+                container[arg] = (container[arg] || []).concat(this.argv[arg])
+            }.bind(this))
             return container
         }.bind(this))
     },
@@ -39,13 +42,16 @@ clu.prototype = {
         },this.config)
     },
 
-    addEnvArgsMaybe : function() {
-        if (this.hasArg('env')) this.addEnvArgs()
+    addArgsMaybe : function() {
+        var otherArgs = Object.keys(this.argv)
+                            .filter(function(arg) { return this.myargs.indexOf(arg) < 0  }.bind(this))
+                            .map(function(arg) { this.prepArg(arg); return arg }.bind(this))
+        if (this.prepArg('env')) this.addEnvArgs(otherArgs)
         return this
     },
 
     replaceVarsMaybe : function() {
-        if (this.hasArg('var')) this.replaceVars()
+        if (this.prepArg('var')) this.replaceVars()
         return this
     }
 
