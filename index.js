@@ -8,13 +8,15 @@ var containerToDockerCommandWithArgs = function(cmd, options, container) {
     container.name = container.id
     if (container.volumes) container.volume = container.volumes
     if (container.ports)   container.p      = container.ports
+    if (container.host)    cmd = ['-H='+container.host,cmd]
     if (!(options.detach === false)) container.d = true
-    container['_'] = ['docker', cmd]
-    return rmist(container, ['cmd','image','id','volumes','ports'])+' '+image+' '+ccmd
+    container['_'] = ['docker'].concat(cmd)
+    return rmist(container, ['cmd','image','id','volumes','ports','host'])+' '+image+' '+ccmd
 }
 
 var containerToDockerCommandWithIds = function(cmd, container) {
-    return 'docker '+cmd+' '+container.id
+    var host = container.host ? '-H='+container.host+' ' : ''
+    return 'docker '+host+cmd+' '+container.id
 }
 
 var validConfig = function(config) {

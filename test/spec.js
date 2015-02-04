@@ -70,4 +70,12 @@ describe('cccf-docker-instructions', function() {
 		assert(instructions[0].indexOf(' -d ') < 0)
 	})
 
+    it('will correctly posision a host property', function() {
+        var c = clone(config)[0]; c.host = 'tcp://172.17.42.1:4243'
+        var run = cdi.run(c)[0]
+        assert(run.split(' ')[1] == '-H=tcp://172.17.42.1:4243')
+        var rm  = cdi.rm(c)[0]
+        assert(rm.split(' ')[1] == '-H=tcp://172.17.42.1:4243')
+    })
+
 })
