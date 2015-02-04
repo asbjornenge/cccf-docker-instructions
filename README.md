@@ -31,7 +31,8 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 All the API functions can take an optional options object.
 
     {
-        detach : false  // (default true)
+        detach  : false,    // (default true)
+        exclude : ['scale'] // Additional properties on the container object to exclude from the output
     }
 
 ## CLI
@@ -57,6 +58,10 @@ As of version 3.0.0 **cdi** will execute the instructions directly. You can reve
     // => "docker run --dns=8.8.8.8 --env=FOO=BAR --name container2 ..."
 
 ## Changelog
+
+### 3.1.0
+
+* Support for excluding properties on the container object from the output
 
 ### 3.0.0
 

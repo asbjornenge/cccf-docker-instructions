@@ -5,13 +5,14 @@ var rmist = require('minimist-reverse')
 var containerToDockerCommandWithArgs = function(cmd, options, container) {
     var image      = container.image
     var ccmd       = container.cmd || ''
+    var exclude    = ['cmd','image','id','volumes','ports','host'].concat(options.exclude || [])
     container.name = container.id
     if (container.volumes) container.volume = container.volumes
     if (container.ports)   container.p      = container.ports
     if (container.host)    cmd = ['-H='+container.host,cmd]
     if (!(options.detach === false)) container.d = true
     container['_'] = ['docker'].concat(cmd)
-    return rmist(container, ['cmd','image','id','volumes','ports','host'])+' '+image+' '+ccmd
+    return rmist(container, exclude)+' '+image+' '+ccmd
 }
 
 var containerToDockerCommandWithIds = function(cmd, container) {

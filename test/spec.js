@@ -78,4 +78,10 @@ describe('cccf-docker-instructions', function() {
         assert(rm.split(' ')[1] == '-H=tcp://172.17.42.1:4243')
     })
 
+    it('supports passing excludes as options', function() {
+        var c = clone(config)[0]; c.scale = 5
+        var run = cdi.run(c, { exclude : ['scale'] })[0]
+        assert(run.indexOf('--scale') < 0)
+    })
+
 })
