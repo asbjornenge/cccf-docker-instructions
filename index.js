@@ -1,21 +1,16 @@
-var cccf = require('cccf')
+var cccf  = require('cccf')
 var clone = require('clone')
-var tsiminim = require('./tsiminim')
+var rmist = require('minimist-reverse')
 
 var containerToDockerCommandWithArgs = function(cmd, options, container) {
-    var image = container.image
-    var ccmd  = container.cmd || ''
-    container.name   = container.id
+    var image      = container.image
+    var ccmd       = container.cmd || ''
+    container.name = container.id
     if (container.volumes) container.volume = container.volumes
     if (container.ports)   container.p      = container.ports
-    delete container.image
-    delete container.cmd
-    delete container.id
-    delete container.volumes
-    delete container.ports
     if (!(options.detach === false)) container.d = true
-    container['_'] = [cmd]
-    return 'docker '+tsiminim(container)+' '+image+' '+ccmd
+    container['_'] = ['docker', cmd]
+    return rmist(container, ['cmd','image','id','volumes','ports'])+' '+image+' '+ccmd
 }
 
 var containerToDockerCommandWithIds = function(cmd, container) {
