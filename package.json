@@ -27,9 +27,10 @@
   },
   "homepage": "https://github.com/asbjornenge/cccf-docker-instructions",
   "dependencies": {
-    "cccf": "^3.0.0",
+    "cccf": "^3.2.1",
     "clone": "^0.2.0",
     "minimist": "^1.1.0",
+    "minimist-reverse": "^1.1.0",
     "prettyjson": "^1.0.0"
   },
   "devDependencies": {

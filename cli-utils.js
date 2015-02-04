@@ -6,7 +6,7 @@ var pathToStatic = function (static_param) {
 }
 
 var clu = function(argv) {
-    this.myargs = ['var']
+    this.myargs = ['var','print']
     this.argv   = argv
 }
 clu.prototype = {
