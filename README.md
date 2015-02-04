@@ -11,7 +11,7 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 ## Use
 
 	var cdi = require('cccf-docker-instructions')
-	console.log(cdi.run(require('containers.json')))
+	cdi.run(require('containers.json'))
 	// =>
 		[
 			"docker run ...",
