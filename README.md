@@ -20,23 +20,49 @@ This module takes a [cccf](https://github.com/asbjornenge/cccf) or a cccf-docker
 
 ## API
 
-	cdi.run(<cccf>)   // run instructions
-	cdi.start(<cccf>) // start instructions
-	cdi.stop(<cccf>)  // stop instructions
-	cdi.kill(<cccf>)  // kill instructions
-	cdi.rm(<cccf>)    // remove instructions
+	cdi.run(<cccf>)     // run instructions
+	cdi.start(<cccf>)   // start instructions
+	cdi.stop(<cccf>)    // stop instructions
+	cdi.kill(<cccf>)    // kill instructions
+	cdi.rm(<cccf>)      // remove instructions
+
+### API Options
+
+All the API functions can take an optional options object.
+
+    {
+        detach : false  // (default true)
+    }
 
 ## CLI
 
+As of version 3.0.0 **cdi** will execute the instructions directly. You can revert to printing by passing the *--print* flag.
+
 	npm install -g cccf-docker-instructions
-	cdi run config.json | sh
+	cdi run config.json
+    // => <exec>
+    cdi run config.json --print
+    // => "docker run ..."
 
-### Options
+### CLI Options
 
-    --env FOO=BAR    // Adds an environment variable to ALL containers in config.json
-    --var MEH=BAH    // Replaces all occurances of ${MEH} with BAH
+    --print             // Prints the instructions instead of executing them
+    --var MEH=BAH       // Replaces all occurances of ${MEH} with BAH
+
+    // ANY other cli argument passed to cdi will be reflected in ALL instructions
+
+    --env FOO=BAR
+    --dns 8.8.8.8
+    // => "docker run --dns=8.8.8.8 --env=FOO=BAR --name container1 ..."
+    // => "docker run --dns=8.8.8.8 --env=FOO=BAR --name container2 ..."
 
 ## Changelog
+
+### 3.0.0
+
+* Execute instructions by default :space_invader:
+* Support for variables!!! :rocket:
+* Forwarding any other arguments (besides *print* and *var*) to ALL instructions
 
 ### 2.4.0
 
