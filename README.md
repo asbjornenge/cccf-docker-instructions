@@ -59,6 +59,10 @@ As of version 3.0.0 **cdi** will execute the instructions directly. You can reve
 
 ## Changelog
 
+### 3.1.1
+
+* Bugfix where cli would not forward args if no --env was set :monkey:
+
 ### 3.1.0
 
 * Support for excluding properties on the container object from the output
