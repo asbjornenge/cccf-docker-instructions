@@ -25,7 +25,7 @@ clu.prototype = {
         return true
     },
 
-    addEnvArgs : function(args) {
+    addArgs : function(args) {
         this.config = this.config.map(function(container) {
             args.forEach(function(arg) {
                 container[arg] = (container[arg] || []).concat(this.argv[arg])
@@ -46,7 +46,7 @@ clu.prototype = {
         var otherArgs = Object.keys(this.argv)
                             .filter(function(arg) { return this.myargs.indexOf(arg) < 0  }.bind(this))
                             .map(function(arg) { this.prepArg(arg); return arg }.bind(this))
-        if (this.prepArg('env')) this.addEnvArgs(otherArgs)
+        this.addArgs(otherArgs)
         return this
     },
 
